@@ -1,16 +1,53 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-link to="/">Домой</router-link>
+  <router-link to="/about">Обо мне</router-link>
+
+  <router-link to="/login" v-if="!user">Войти</router-link>
+
+  <br>
+  <br>
+  <a href="#" @click="logout" v-if="user">Выход</a>
+
+  <br>
+  <br>
+  <router-link to="/me" v-if="user">Данные</router-link>
+
+  <router-view></router-view>
+<!--  <img alt="Vue logo" src="./assets/logo.png">-->
+<!--  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+
+// import axios from "axios";
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
-  }
+    // HelloWorld
+  },
+
+  methods:{
+    logout(){
+      localStorage.removeItem('token')
+      this.$store.dispatch('user', null)
+      window.location.href = '/login'
+    }
+  },
+
+  computed: {
+    ...mapGetters(['user'])
+  },
+
+  // created() {
+  //   axios.get('/Members/auth').then(res => {
+  //     console.log(res.data)
+  //     this.$store.dispatch('user', res)
+  //   })
+  // }
 }
 </script>
 
