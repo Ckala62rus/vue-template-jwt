@@ -33,6 +33,7 @@ export default {
   methods:{
     logout(){
       localStorage.removeItem('token')
+      localStorage.removeItem('refreshToken')
       this.$store.dispatch('user', null)
       window.location.href = '/login'
     }
@@ -42,12 +43,18 @@ export default {
     ...mapGetters(['user'])
   },
 
-  // created() {
-  //   axios.get('/Members/auth').then(res => {
-  //     console.log(res.data)
-  //     this.$store.dispatch('user', res)
-  //   })
-  // }
+  created() {
+
+    let token = localStorage.getItem('token')
+    let refreshToken = localStorage.getItem('refreshToken')
+
+    if (token && refreshToken) {
+      this.$store.dispatch('user', {
+        token: token,
+        refreshToken: refreshToken
+      })
+    }
+  }
 }
 </script>
 

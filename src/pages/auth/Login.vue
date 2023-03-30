@@ -31,12 +31,13 @@ export default {
         axios.post('Auth/Auth', this.form).then(res => {
           if (res.status === 200){
             localStorage.setItem('token', res.data.token)
+            localStorage.setItem('refreshToken', res.data.refreshToken)
 
             axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
 
             this.$store.dispatch('user', {
-              token: res.data.token,
-              refreshToken: res.data.refreshToken
+              token: localStorage.getItem('token'),
+              refreshToken: localStorage.getItem('refreshToken')
             })
             // window.location.href = '/';
             this.$router.push('/')

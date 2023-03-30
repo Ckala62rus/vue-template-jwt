@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router"
 
 import HelloWorld from "@/components/HelloWorld.vue";
-import About from "@/pages/About.vue";
+// import About from "@/pages/About.vue";
 // import Login from "@/pages/auth/Login.vue";
 // import GetMe from "@/pages/auth/GetMe";
 import axios from "axios";
 
 const Login = () => import("@/pages/auth/Login.vue")
 const GetMe = () => import("@/pages/auth/GetMe")
+const About = () => import("@/pages/About")
 
 const routeInfos = [
     {
@@ -47,6 +48,8 @@ router.beforeEach((to, from) => {
     }
 
     if (token && to.path === "/login") {
+        localStorage.removeItem('token')
+        localStorage.removeItem('refreshToken')
         return false;
     }
 
