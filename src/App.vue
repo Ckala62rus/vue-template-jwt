@@ -35,7 +35,8 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')
       this.$store.dispatch('user', null)
-      window.location.href = '/login'
+      // window.location.href = '/login'
+      this.$router.push('/login')
     }
   },
 
