@@ -183,10 +183,24 @@ export default {
 
     checkAuth(){
       this.timer = setInterval(() => {
-        console.log('timer!')
-        axios.get('Auth/me')
+        axios.get('Auth/me').then(res => {
+          if (typeof res.response != 'undefined' && res.response.status === 401){
+            this.$notify({
+              title: "Авторизация",
+              text: "Активная сессия истекла",
+              type: 'info',
+              speed: 5000
+            });
+          }
+        }).catch(err => {
+          console.log(err)
+        })
       }, 5000)
-    }
+    },
+
+    setCurrentUser(){
+      this.$store.dispatch('some/someAction', {name: 'test'})
+    },
   },
 
   computed: {
@@ -200,6 +214,7 @@ export default {
 
   mounted() {
    this.checkAuth()
+   // this.setCurrentUser()
   },
 
   unmounted() {

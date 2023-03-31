@@ -1,25 +1,25 @@
 import Vuex from "vuex";
 
 const state = {
-    user: null
+    some: 'test'
 }
 
 const store = new Vuex.Store({
     state,
     getters: {
         // eslint-disable-next-line no-unused-vars
-        user: (state) => {
-            return state.user;
+        someGetter: (state) => {
+            return state.some;
         }
     },
     actions: {
-        user(context, user) {
-            context.commit('user', user);
+        someAction(context, payload) {
+            context.commit('someMutation', payload);
         }
     },
     mutations: {
-        user(state, user) {
-            state.user = user;
+        someMutation(state, payload) {
+            state.some = payload;
         }
     },
 });

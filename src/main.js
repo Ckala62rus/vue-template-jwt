@@ -9,6 +9,8 @@ import VueAxios from 'vue-axios'
 // import Vuex from 'vuex'
 import store from "@/vuex";
 
+import Notifications from '@kyvg/vue3-notification'
+
 axios.defaults.baseURL = process.env.VUE_APP_BASE_API_URL;
 axios.defaults.withCredentials = true
 
@@ -25,9 +27,7 @@ axios.interceptors.response.use(response => {
         localStorage.removeItem('token')
         localStorage.removeItem('refreshToken')
         store.dispatch('user', null)
-        // axios.defaults.headers.common["Authorization"] = ``;
         delete axios.defaults.headers.common["Authorization"];
-        // window.location.href = '/login'
         router.push('/login')
     }
     return error;
@@ -36,6 +36,7 @@ axios.interceptors.response.use(response => {
 createApp(App)
     .use(router)
     .use(VueAxios, axios)
+    .use(Notifications)
     // .use(Vuex)
     .use(store)
     .mount('#app')
