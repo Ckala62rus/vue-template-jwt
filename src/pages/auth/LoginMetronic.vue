@@ -18,10 +18,6 @@
               <!--begin::Title-->
               <h1 class="text-dark mb-3">Sign In to Metronic</h1>
               <!--end::Title-->
-              <!--begin::Link-->
-              <div class="text-gray-400 fw-bold fs-4">New Here?
-                <a href="../../demo1/dist/authentication/flows/dark/sign-up.html" class="link-primary fw-bolder">Create an Account</a></div>
-              <!--end::Link-->
             </div>
             <!--begin::Heading-->
             <!--begin::Input group-->
@@ -60,9 +56,6 @@
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
               </button>
               <!--end::Submit button-->
-              <!--begin::Separator-->
-              <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
-              <!--end::Separator-->
             </div>
             <!--end::Actions-->
           </form>

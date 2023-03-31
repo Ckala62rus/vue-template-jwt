@@ -106,7 +106,13 @@
                     <!--end::Separator-->
                     <!--begin::Row-->
                     <div class="row">
-                      <router-view></router-view>
+
+                      <router-view v-slot="{ Component }">
+                        <transition name="slide-left">
+                          <component :is="Component" />
+                        </transition>
+                      </router-view>
+
                     </div>
                     <!--begin::Row-->
                   </div>
@@ -224,5 +230,44 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition-duration: 0.1s;
+  transition-property: height, opacity, transform;
+  transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+  overflow: hidden;
+}
 
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(2em, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate(-2em, 0);
+}
+.scale-slide-enter-active,
+.scale-slide-leave-active {
+  position: absolute;
+  transition: all 0.85s ease;
+}
+.scale-slide-enter-from {
+  left: -100%;
+}
+.scale-slide-enter-to {
+  left: 0%;
+}
 </style>

@@ -1,9 +1,11 @@
 <template>
-  <h1>Данные</h1>
-  <p>{{user}}</p>
+  <div>
+    <h1>Данные</h1>
+    <p>{{user}}</p>
 
-  <h1>Данные с сервера</h1>
-  <p v-for="item in data" :key="item.name">{{item.name}} ===> {{item.youTubeUserId}}</p>
+    <h1>Данные с сервера</h1>
+    <p v-for="item in data" :key="item.name">{{item.name}} ===> {{item.youTubeUserId}}</p>
+  </div>
 </template>
 
 <script>
