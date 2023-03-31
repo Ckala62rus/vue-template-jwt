@@ -160,10 +160,18 @@
 import {mapGetters} from 'vuex'
 import UserMenu from "@/pages/template/UserMenu";
 import AsideMenu from "@/pages/template/AsideMenu";
+import axios from "axios";
 
 export default {
   name: "MainTemplate",
   components: {AsideMenu, UserMenu},
+
+  data(){
+    return {
+      timer: null
+    }
+  },
+
   methods:{
     logout(){
       localStorage.removeItem('token')
@@ -171,6 +179,13 @@ export default {
       this.$store.dispatch('user', null)
       // window.location.href = '/login'
       this.$router.push('/login')
+    },
+
+    checkAuth(){
+      this.timer = setInterval(() => {
+        console.log('timer!')
+        axios.get('Auth/me')
+      }, 5000)
     }
   },
 
@@ -181,6 +196,14 @@ export default {
   created() {
     document.body.className = '';
     document.body.classList.add('header-fixed', 'header-tablet-and-mobile-fixed', 'toolbar-enabled', 'toolbar-fixed', 'aside-enabled', 'aside-fixed')
+  },
+
+  mounted() {
+   this.checkAuth()
+  },
+
+  unmounted() {
+    clearInterval(this.timer)
   }
 }
 </script>

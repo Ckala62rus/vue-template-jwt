@@ -4,7 +4,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 // import About from "@/pages/About.vue";
 // import Login from "@/pages/auth/Login.vue";
 // import GetMe from "@/pages/auth/GetMe";
-import axios from "axios";
+// import axios from "axios";
 
 const Login = () => import("@/pages/auth/Login.vue")
 const GetMe = () => import("@/pages/auth/GetMe")
@@ -56,7 +56,7 @@ router.beforeEach((to, from) => {
     // Делаем запрос при переходи на защещенный маршрут
     // что бы поймать 401 ошибку или пройти дальше
     //todo сделать метод для получения модели зарегистрированного пользователя
-    axios.get('/Members/paginate/' + 1)
+    //axios.get('/Members/paginate/' + 1)
 })
 
 export default router;
