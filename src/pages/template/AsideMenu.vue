@@ -42,7 +42,7 @@
             <span class="menu-title">Обо мне</span>
           </router-link>
 
-          <a class="menu-link" href="#" @click="logout" v-if="user">
+          <a class="menu-link" href="#" @click="logout">
                   <span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -57,7 +57,7 @@
             <span class="menu-title">Выход</span>
           </a>
 
-          <router-link class="menu-link" to="/me" v-if="user">
+          <router-link class="menu-link" to="/me">
                   <span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -72,7 +72,7 @@
             <span class="menu-title">Данные</span>
           </router-link>
 
-          <router-link class="menu-link" to="/login" v-if="!user">
+          <router-link class="menu-link" to="/member">
                   <span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/communication/com001.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -84,7 +84,7 @@
 											</span>
                     <!--end::Svg Icon-->
 										</span>
-            <span class="menu-title">Войти</span>
+            <span class="menu-title">Пользователи</span>
           </router-link>
 
         </div>

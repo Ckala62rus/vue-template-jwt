@@ -24,7 +24,7 @@ export default {
 
   methods: {
     getData(){
-      axios.get('Members/paginate/' + this.page, {
+      axios.get('Members/paginate?page=' + this.page, {
       }).then(res => {
         // console.log(res)
         if (res.status === 200){

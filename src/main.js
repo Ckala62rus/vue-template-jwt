@@ -11,6 +11,8 @@ import store from "@/vuex";
 
 import Notifications from '@kyvg/vue3-notification'
 
+import {ServerTable, ClientTable} from 'v-tables-3';
+
 axios.defaults.baseURL = process.env.VUE_APP_BASE_API_URL;
 axios.defaults.withCredentials = true
 
@@ -37,6 +39,7 @@ createApp(App)
     .use(router)
     .use(VueAxios, axios)
     .use(Notifications)
-    // .use(Vuex)
+    .use(ServerTable)
+    .use(ClientTable)
     .use(store)
     .mount('#app')

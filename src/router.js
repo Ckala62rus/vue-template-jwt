@@ -5,6 +5,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 const Login = () => import("@/pages/auth/LoginMetronic.vue")
 const GetMe = () => import("@/pages/auth/GetMe")
 const About = () => import("@/pages/About")
+const MemberIndex = () => import("@/pages/members/MemberIndex")
 
 const routeInfos = [
     {
@@ -22,6 +23,10 @@ const routeInfos = [
     {
         path : "/me",
         component : GetMe
+    },
+    {
+        path : "/member",
+        component : MemberIndex
     },
 ]
 
