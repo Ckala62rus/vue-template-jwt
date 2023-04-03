@@ -6,7 +6,6 @@ import router from "@/router";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-// import Vuex from 'vuex'
 import store from "@/vuex";
 
 import Notifications from '@kyvg/vue3-notification'
