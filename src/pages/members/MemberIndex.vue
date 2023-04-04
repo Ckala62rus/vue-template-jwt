@@ -3,11 +3,17 @@
     <h1>Member</h1>
 
     <div class="table-responsive">
+      <v-server-table
+          :url="url"
+          :columns="columns"
+          :options="options"
+          ref="user-table"
+      ></v-server-table>
+
       <v-client-table
           :data="tableData"
           :columns="columns"
           :options="options"
-
       >
         <template v-slot:actions="{row}">
           <a href="javascript:;" @click="deleteLine(row)">
@@ -26,6 +32,7 @@
     </div>
 
     <button class="btn btn-success mt-5" @click="refreshTable">Refresh</button>
+    <button class="btn btn-success mt-5" @click="refreshTableServer">Refresh server</button>
   </div>
 </template>
 
@@ -45,6 +52,20 @@ export default {
         'actions'
       ],
       options: {
+        requestFunction(data) {
+          return  axios.get(this.url, {
+            params: data
+          })
+            .then(res => {
+              return {
+                data: res.data.data,
+                count: res.data.total
+              }
+            })
+            .catch(function (e) {
+            this.dispatch('error', e);
+          });
+        },
         perPage: 1,
         // see the options API
         editableColumns:['text'],
@@ -72,6 +93,10 @@ export default {
       axios.get(this.url).then(res => {
         this.tableData = res.data.data;
       })
+    },
+
+    refreshTableServer(){
+      this.$refs['user-table'].refresh()
     },
 
     deleteLine(row){
