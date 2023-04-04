@@ -37,8 +37,8 @@
         <a href="../../demo1/dist/pages/projects/list.html" class="menu-link px-5">
           <span class="menu-text">My Projects</span>
           <span class="menu-badge">
-															<span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-														</span>
+            <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
+          </span>
         </a>
       </div>
       <!--end::Menu item-->
@@ -93,14 +93,17 @@
         <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
       </div>
       <!--end::Menu item-->
+
       <!--begin::Menu item-->
       <div class="menu-item px-5">
-        <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="menu-link px-5">Sign Out</a>
+        <a href="#" @click="logout" class="menu-link px-5">Exit</a>
       </div>
       <!--end::Menu item-->
+
       <!--begin::Menu separator-->
       <div class="separator my-2"></div>
       <!--end::Menu separator-->
+
       <!--begin::Menu item-->
       <div class="menu-item px-5">
         <div class="menu-content px-5">
@@ -119,8 +122,25 @@
 </template>
 
 <script>
+
+import {mapGetters} from 'vuex'
+
 export default {
-  name: "UserMenu"
+  name: "UserMenu",
+
+  methods:{
+    logout(){
+      localStorage.removeItem('token')
+      localStorage.removeItem('refreshToken')
+      this.$store.dispatch('user', null)
+      // window.location.href = '/login'
+      this.$router.push('/login')
+    }
+  },
+
+  computed: {
+    ...mapGetters(['user'])
+  },
 }
 </script>
 
